@@ -2,29 +2,25 @@ package christmas.model;
 
 import static christmas.model.MenuType.*;
 
-import com.sun.tools.javac.Main;
-
 public enum Menu {
-    ButtonMushroomSoup(APPETIZER, "양송이수프", 6000),
-    Tapas(APPETIZER, "타파스", 5500),
-    CeasarSalad(APPETIZER, "시저샐러드", 8000),
-    TBoneStake(MAIN, "티본스테이크", 55000),
-    BarbecueRib(MAIN, "바비큐립", 54000),
-    SeafoodPasta(MAIN, "해산물파스타", 35000),
-    ChristmasPasta(MAIN, "크리스마스파스타", 25000),
-    ChocolateCake(DESSERT, "초코케이크", 15000),
-    IceCream(DESSERT, "아이스크림", 5000),
-    ZeroCoke(DRINK, "제로콜라", 3000),
-    RedWine(DRINK, "레드와인", 60000),
-    Champagne(DRINK, "샴페인", 25000);
+    양송이수프(APPETIZER, 6000),
+    타파스(APPETIZER, 5500),
+    시저샐러드(APPETIZER, 8000),
+    티본스테이크(MAIN, 55000),
+    바비큐립(MAIN, 54000),
+    해산물파스타(MAIN, 35000),
+    크리스마스파스타(MAIN, 25000),
+    초코케이크(DESSERT, 15000),
+    아이스크림(DESSERT, 5000),
+    제로콜라(DRINK, 3000),
+    레드와인(DRINK, 60000),
+    샴페인(DRINK, 25000);
 
     final MenuType dishType;
-    final String label;
     final int price;
 
-    Menu(MenuType type, String label, int price) {
+    Menu(MenuType type, int price) {
         this.dishType = type;
-        this.label = label;
         this.price = price;
     }
 
