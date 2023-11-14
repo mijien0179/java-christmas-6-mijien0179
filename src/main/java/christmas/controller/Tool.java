@@ -1,6 +1,7 @@
 package christmas.controller;
 
 import christmas.view.View;
+import java.text.DecimalFormat;
 
 public class Tool {
 
@@ -21,6 +22,11 @@ public class Tool {
                 View.error(e.getMessage());
             }
         }
+    }
+
+    public static String formattedNumericString(int number) {
+        DecimalFormat df = new DecimalFormat("###,###");
+        return df.format(number);
     }
 
 }
