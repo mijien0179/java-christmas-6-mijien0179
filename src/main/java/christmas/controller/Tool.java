@@ -1,10 +1,6 @@
 package christmas.controller;
 
-import christmas.input.Input;
 import christmas.view.View;
-import java.lang.invoke.MethodHandle;
-import java.util.function.Consumer;
-import java.util.function.Function;
 
 public class Tool {
 
@@ -16,11 +12,11 @@ public class Tool {
         }
     }
 
-    public static void looper(Function<Void, Void> loop) {
+    public static void restartWhenException(Runnable loop) {
         while (true) {
             try {
-                loop.apply(null);
-                return;
+                loop.run();
+                break;
             } catch (Exception e) {
                 View.error(e.getMessage());
             }
