@@ -1,6 +1,7 @@
 package christmas.controller;
 
 import christmas.model.Menu;
+import christmas.model.MenuType;
 import christmas.model.Order;
 import java.util.List;
 
@@ -56,6 +57,22 @@ public class Validate {
         }
         if(MAXIMUM_MENU_COUNT < count){
             throw new IllegalArgumentException("한번에 주문 가능한 음식의 수는 20개를 넘길 수 없습니다.");
+        }
+    }
+
+    public static void drinkOrderOnly(List<Order> order){
+        boolean isDrinkOnly = true;
+        for(var menu:order){
+            var type = menu.getMenu()
+                    .getDishType();
+            if(type != MenuType.DRINK){
+                isDrinkOnly = false;
+                break;
+            }
+        }
+
+        if(isDrinkOnly){
+            throw new IllegalArgumentException("음료만 주문할 수는 없습니다.");
         }
     }
 
