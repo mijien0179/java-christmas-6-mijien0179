@@ -28,6 +28,7 @@ public class Input {
             Validate.uniqueMenuOrder(order, menu);
             order.add(menu);
         }
+        Validate.totalCountOfMenu(order);
         return order;
     }
 

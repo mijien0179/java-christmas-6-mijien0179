@@ -48,4 +48,15 @@ public class Validate {
         }
     }
 
+    public static void totalCountOfMenu(List<Order> order){
+        final int MAXIMUM_MENU_COUNT = 20;
+        int count = 0;
+        for(var menu: order){
+            count += menu.getCount();
+        }
+        if(MAXIMUM_MENU_COUNT < count){
+            throw new IllegalArgumentException("한번에 주문 가능한 음식의 수는 20개를 넘길 수 없습니다.");
+        }
+    }
+
 }

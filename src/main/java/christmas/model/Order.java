@@ -26,6 +26,9 @@ public class Order {
     }
 
     public Menu getMenu() {
-        return this.menu;
+        return menu;
+    }
+    public int getCount(){
+        return count;
     }
 }
