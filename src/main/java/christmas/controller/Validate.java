@@ -13,7 +13,7 @@ public class Validate {
     public static void rangeOfDecember(int number) {
         if (number < 1 || 31 < number) {
             // NOTE: REQUIRED TEXT
-            throw new IllegalArgumentException("유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException(ValidationString.INVALID_DAY.toString());
         }
     }
 
@@ -21,7 +21,7 @@ public class Validate {
         try {
             Menu.valueOf(name);
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException(ValidationString.INVALID_ORDER.toString());
         }
     }
 
@@ -32,20 +32,20 @@ public class Validate {
             var diffMenuName = item.getMenu()
                     .name();
             if (diffMenuName.equals(menuName)) {
-                throw new IllegalArgumentException("유효하지 않은 주문입니다. 다시 입력해 주세요.");
+                throw new IllegalArgumentException(ValidationString.INVALID_ORDER.toString());
             }
         }
     }
 
     public static void menuCount(int count){
         if(count < 1){
-            throw new IllegalArgumentException("유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException(ValidationString.INVALID_ORDER.toString());
         }
     }
 
     public static void menuAndCountFormat(String str){
         if(!str.contains("-")){
-            throw new IllegalArgumentException("유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException(ValidationString.INVALID_ORDER.toString());
         }
     }
 
@@ -56,7 +56,7 @@ public class Validate {
             count += menu.getCount();
         }
         if(MAXIMUM_MENU_COUNT < count){
-            throw new IllegalArgumentException("한번에 주문 가능한 음식의 수는 20개를 넘길 수 없습니다.");
+            throw new IllegalArgumentException(ValidationString.INVALID_ORDER_MAXIMUM_COUNT.toString());
         }
     }
 
@@ -72,7 +72,7 @@ public class Validate {
         }
 
         if(isDrinkOnly){
-            throw new IllegalArgumentException("음료만 주문할 수는 없습니다.");
+            throw new IllegalArgumentException(ValidationString.INVALID_ORDER_ONLY_DRINK.toString());
         }
     }
 
