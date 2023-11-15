@@ -138,6 +138,9 @@ public class Benefit {
     }
 
     public String toString() {
+        if(benefit.isEmpty()){
+            return "없음";
+        }
         return String.join("\n", benefit);
     }
 
