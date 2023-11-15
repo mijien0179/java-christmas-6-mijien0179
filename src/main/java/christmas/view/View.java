@@ -74,7 +74,7 @@ public class View {
     }
 
     private static void println(String str) {
-        print(str + '\n');
+        print(str + System.lineSeparator());
     }
 
     private static void println() {
