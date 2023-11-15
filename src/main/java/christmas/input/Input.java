@@ -3,6 +3,7 @@ package christmas.input;
 import camp.nextstep.edu.missionutils.Console;
 import christmas.controller.Tool;
 import christmas.controller.Validate;
+import christmas.controller.ValidationString;
 import christmas.model.Order;
 import christmas.view.View;
 import java.util.ArrayList;
@@ -12,7 +13,10 @@ public class Input {
     public static int reservedDay() {
         View.reservedDay();
         String input = Console.readLine();
-        Validate.isIntegerNumeric(input);
+        Tool.executeWithExceptionUserMessage(
+                () -> Validate.isIntegerNumeric(input),
+                ValidationString.INVALID_DAY.toString()
+        );
         int value = Tool.string2Integer(input);
         Validate.rangeOfDecember(value);
         return value;
@@ -44,6 +48,10 @@ public class Input {
         Validate.menuAndCountFormat(str);
         var item = separatingMenuAndCount(str);
         var menuName = item[INDEX_MENU_NAME];
+        Tool.executeWithExceptionUserMessage(
+                () -> Validate.isIntegerNumeric(item[INDEX_MENU_COUNT]),
+                ValidationString.INVALID_ORDER.toString()
+        );
         var count = Tool.string2Integer(item[INDEX_MENU_COUNT]);
         Validate.menuName(menuName);
         Validate.menuCount(count);
