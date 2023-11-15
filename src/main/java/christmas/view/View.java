@@ -1,5 +1,6 @@
 package christmas.view;
 
+import christmas.controller.Tool;
 import christmas.model.Order;
 import java.util.List;
 
@@ -23,10 +24,45 @@ public class View {
 
     public static void orderedList(List<Order> order) {
         println("<주문 메뉴>");
-        for(var menu: order){
+        for (var menu : order) {
             println(menu.toString());
         }
         println();
+    }
+
+    public static void totalPriceBeforeDiscount(int price) {
+        println("<할인 전 총주문 금액>");
+        println(formatString("%s원", Tool.formattedNumericString(price)));
+        println();
+    }
+
+    public static void giftMenu(String benefit){
+        println("<증정 메뉴>");
+        println(benefit);
+        println();
+    }
+
+    public static void benefitLog(String log){
+        println("<혜택 내역>");
+        println(log);
+        println();
+    }
+
+    public static void totalBenefitPrice(int price){
+        println("<총혜택 금액>");
+        println(String.format("%s원", Tool.formattedNumericString(-price)));
+        println();
+    }
+
+    public static void totalChargeAfterApplyBenefit(int price){
+        println("<할인 후 예상 결제 금액>");
+        println(String.format("%s원", Tool.formattedNumericString(price)));
+        println();
+    }
+
+    public static void eventBadge(String badge){
+        println("<12월 이벤트 배지>");
+        println(badge);
     }
 
     public static void error(String str) {
@@ -41,7 +77,7 @@ public class View {
         print(str + '\n');
     }
 
-    private static void println(){
+    private static void println() {
         println("");
     }
 

@@ -12,7 +12,7 @@ public class Benefit {
     int benefitPrice = 0;
     List<String> benefit = new ArrayList<>();
     boolean presentGift = false;
-    int totalPrice;
+    private int totalPrice;
 
 
     public Benefit(int day, List<Order> order) {
@@ -93,8 +93,9 @@ public class Benefit {
         for (var menu : order) {
             var menuType = menu.getMenu()
                     .getDishType();
+            var count = menu.getCount();
             if (menuType == WEEK_DISCOUNT_TARGET) {
-                discount += WEEK_DISCOUNT;
+                discount += WEEK_DISCOUNT * count;
             }
         }
 
@@ -104,7 +105,7 @@ public class Benefit {
     }
 
     private void weekendDiscount(List<Order> order) {
-        final var WEEKEND_DISCOUNT_TARGET = MenuType.DESSERT;
+        final var WEEKEND_DISCOUNT_TARGET = MenuType.MAIN;
         final var WEEKEND_DISCOUNT = 2023;
         int discount = 0;
 
@@ -124,7 +125,7 @@ public class Benefit {
 
     private void addDiscount(String label, int discount) {
         discountPrice += discount;
-        addBenefitLog(label, discountPrice);
+        addBenefitLog(label, discount);
     }
 
     private void addBenefit(String label, int price) {
@@ -137,23 +138,24 @@ public class Benefit {
     }
 
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-
-        if (benefit.isEmpty()) {
-            return "없음";
-        }
-
-        for (var str : benefit) {
-            sb.append(str);
-            sb.append("\n");
-        }
-
-        return sb.toString();
+        return String.join("\n", benefit);
     }
 
-    public String toTotalBenefit() {
-        int totalBenefit = totalBenefit();
-        return String.format("%s원", Tool.formattedNumericString(-totalBenefit));
+    public int toTotalBenefit() {
+        return totalBenefit();
+    }
+
+    public int getDiscountPrice() {
+        return discountPrice;
+    }
+
+    public String toGift() {
+        final int GIFT_CRITERIA = 20000;
+        final Order GIFT = new Order("샴페인", 1);
+        if (totalBenefit() < GIFT_CRITERIA) {
+            return "없음";
+        }
+        return GIFT.toString();
     }
 
     private int totalBenefit() {
@@ -177,6 +179,10 @@ public class Benefit {
             return "트리";
         }
         return "산타";
+    }
+
+    public int toTotalPrice() {
+        return totalPrice;
     }
 
 }
